@@ -4,6 +4,27 @@
 
 #include "RubiksCube.h"
 
+//
+//Given a color return it's first letter
+//
+
+char RubiksCube::getColorLetter(COLOR color) const {
+    switch (color) {
+        case COLOR::BLUE:
+            return 'B';
+        case COLOR::GREEN:
+            return 'G';
+        case COLOR::RED:
+            return 'R';
+        case COLOR::YELLOW:
+            return 'Y';
+        case COLOR::WHITE:
+            return 'W';
+        case COLOR::ORANGE:
+            return 'O';
+    }
+}
+
 /*
  * Describe a move using an index
  */
@@ -142,148 +163,42 @@ void RubiksCube::print() const {
     for (int row = 0; row <= 2; row++) {
         for (unsigned i = 0; i < 8; i++) cout << " ";
         for (int col = 0; col <= 2; col++) {
-            switch (getColor(FACE::UP, row, col)) {
-                case COLOR::BLUE:
-                    cout << "B ";
-                    continue;
-                case COLOR::GREEN:
-                    cout << "G ";
-                    continue;
-                case COLOR::ORANGE:
-                    cout << "O ";
-                    continue;
-                case COLOR::RED:
-                    cout << "R ";
-                    continue;
-                case COLOR::WHITE:
-                    cout << "W ";
-                    continue;
-                case COLOR::YELLOW:
-                    cout << "Y ";
-                    continue;
-            }
+            cout << getColorLetter(getColor(FACE::UP, row, col)) << " ";
         }
         cout << "\n";
     }
+
     cout << "\n";
+
     for (int row = 0; row <= 2; row++) {
+
         for (int col = 0; col <= 2; col++) {
-            switch (getColor(FACE::LEFT, row, col)) {
-                case COLOR::BLUE:
-                    cout << "B ";
-                    continue;
-                case COLOR::GREEN:
-                    cout << "G ";
-                    continue;
-                case COLOR::ORANGE:
-                    cout << "O ";
-                    continue;
-                case COLOR::RED:
-                    cout << "R ";
-                    continue;
-                case COLOR::WHITE:
-                    cout << "W ";
-                    continue;
-                case COLOR::YELLOW:
-                    cout << "Y ";
-                    continue;
-            }
+            cout << getColorLetter (getColor(FACE::LEFT, row, col)) << " ";
         }
         cout << " ";
+
         for (int col = 0; col <= 2; col++) {
-            switch (getColor(FACE::FRONT, row, col)) {
-                case COLOR::BLUE:
-                    cout << "B ";
-                    continue;
-                case COLOR::GREEN:
-                    cout << "G ";
-                    continue;
-                case COLOR::ORANGE:
-                    cout << "O ";
-                    continue;
-                case COLOR::RED:
-                    cout << "R ";
-                    continue;
-                case COLOR::WHITE:
-                    cout << "W ";
-                    continue;
-                case COLOR::YELLOW:
-                    cout << "Y ";
-                    continue;
-            }
+            cout << getColorLetter (getColor(FACE::FRONT, row, col))  << " ";
         }
         cout << " ";
+
         for (int col = 0; col <= 2; col++) {
-            switch (getColor(FACE::RIGHT, row, col)) {
-                case COLOR::BLUE:
-                    cout << "B ";
-                    continue;
-                case COLOR::GREEN:
-                    cout << "G ";
-                    continue;
-                case COLOR::ORANGE:
-                    cout << "O ";
-                    continue;
-                case COLOR::RED:
-                    cout << "R ";
-                    continue;
-                case COLOR::WHITE:
-                    cout << "W ";
-                    continue;
-                case COLOR::YELLOW:
-                    cout << "Y ";
-                    continue;
-            }
+            cout << getColorLetter (getColor(FACE::RIGHT, row, col)) << " ";
         }
         cout << " ";
+
         for (int col = 0; col <= 2; col++) {
-            switch (getColor(FACE::BACK, row, col)) {
-                case COLOR::BLUE:
-                    cout << "B ";
-                    continue;
-                case COLOR::GREEN:
-                    cout << "G ";
-                    continue;
-                case COLOR::ORANGE:
-                    cout << "O ";
-                    continue;
-                case COLOR::RED:
-                    cout << "R ";
-                    continue;
-                case COLOR::WHITE:
-                    cout << "W ";
-                    continue;
-                case COLOR::YELLOW:
-                    cout << "Y ";
-                    continue;
-            }
+            cout << getColorLetter (getColor(FACE::BACK, row, col)) << " ";
         }
         cout << "\n";
     }
+
     cout << "\n";
+
     for (int row = 0; row <= 2; row++) {
         for (unsigned i = 0; i < 8; i++) cout << " ";
         for (int col = 0; col <= 2; col++) {
-            switch (getColor(FACE::DOWN, row, col)) {
-                case COLOR::BLUE:
-                    cout << "B ";
-                    continue;
-                case COLOR::GREEN:
-                    cout << "G ";
-                    continue;
-                case COLOR::ORANGE:
-                    cout << "O ";
-                    continue;
-                case COLOR::RED:
-                    cout << "R ";
-                    continue;
-                case COLOR::WHITE:
-                    cout << "W ";
-                    continue;
-                case COLOR::YELLOW:
-                    cout << "Y ";
-                    continue;
-            }
+            cout << getColorLetter (getColor(FACE::DOWN, row, col)) << " ";
         }
         cout << "\n";
     }

@@ -7,4 +7,5 @@ include_directories(Model)
 
 add_executable(rubiks_cube_solver
         Model/RubiksCube.cpp
-        Model/RubiksCube.h)
+        Model/RubiksCube.h
+        main.cpp Model/RubiksCube3dArray.cpp)
