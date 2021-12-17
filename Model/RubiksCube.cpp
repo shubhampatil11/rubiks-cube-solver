@@ -139,9 +139,9 @@ RubiksCube &RubiksCube::invert(MOVE ind) {
 void RubiksCube::print() const {
     cout << "Rubik Cube:\n\n";
 
-    for (int row = 2; row >= 0; row--) {
+    for (int row = 0; row <= 2; row++) {
         for (unsigned i = 0; i < 8; i++) cout << " ";
-        for (int col = 2; col >= 0; col--) {
+        for (int col = 0; col <= 2; col++) {
             switch (getColor(FACE::UP, row, col)) {
                 case COLOR::BLUE:
                     cout << "B ";
