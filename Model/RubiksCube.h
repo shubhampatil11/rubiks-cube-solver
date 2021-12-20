@@ -6,6 +6,7 @@
 #define RUBIKS_CUBE_SOLVER_RUBIKSCUBE_H
 
 #include "bits/stdc++.h"
+
 using namespace std;
 
 /**
@@ -52,7 +53,13 @@ public:
      * @param Face, row, and column index
      */
     virtual COLOR getColor(FACE face, unsigned row, unsigned col) const = 0;
+
+    /*
+     * Returns the first letter of the given COLOR
+     * Eg: For COLOR::GREEN, it returns 'G'
+     */
     char getColorLetter(COLOR color) const;
+
     /*
      * Returns true if the Rubik Cube is solved, otherwise returns false.
      */
@@ -110,36 +117,49 @@ public:
     /*
      * Randomly shuffle the cube.
      */
-    RubiksCube& randomShuffleCube(unsigned int times);
+    RubiksCube &randomShuffleCube(unsigned int times);
 
     // Rotational moves on Rubik Cube
 
-    RubiksCube& move(MOVE ind);
-    RubiksCube& invert(MOVE ind);
+    RubiksCube &move(MOVE ind);
 
-    virtual RubiksCube& u() = 0;
-    virtual RubiksCube& uPrime() = 0;
-    virtual RubiksCube& u2() = 0;
+    RubiksCube &invert(MOVE ind);
 
-    virtual RubiksCube& l() = 0;
-    virtual RubiksCube& lPrime() = 0;
-    virtual RubiksCube& l2() = 0;
+    virtual RubiksCube &u() = 0;
 
-    virtual RubiksCube& f() = 0;
-    virtual RubiksCube& fPrime() = 0;
-    virtual RubiksCube& f2() = 0;
+    virtual RubiksCube &uPrime() = 0;
 
-    virtual RubiksCube& r() = 0;
-    virtual RubiksCube& rPrime() = 0;
-    virtual RubiksCube& r2() = 0;
+    virtual RubiksCube &u2() = 0;
 
-    virtual RubiksCube& b() = 0;
-    virtual RubiksCube& bPrime() = 0;
-    virtual RubiksCube& b2() = 0;
+    virtual RubiksCube &l() = 0;
 
-    virtual RubiksCube& d() = 0;
-    virtual RubiksCube& dPrime() = 0;
-    virtual RubiksCube& d2() = 0;
+    virtual RubiksCube &lPrime() = 0;
+
+    virtual RubiksCube &l2() = 0;
+
+    virtual RubiksCube &f() = 0;
+
+    virtual RubiksCube &fPrime() = 0;
+
+    virtual RubiksCube &f2() = 0;
+
+    virtual RubiksCube &r() = 0;
+
+    virtual RubiksCube &rPrime() = 0;
+
+    virtual RubiksCube &r2() = 0;
+
+    virtual RubiksCube &b() = 0;
+
+    virtual RubiksCube &bPrime() = 0;
+
+    virtual RubiksCube &b2() = 0;
+
+    virtual RubiksCube &d() = 0;
+
+    virtual RubiksCube &dPrime() = 0;
+
+    virtual RubiksCube &d2() = 0;
 };
 
 
