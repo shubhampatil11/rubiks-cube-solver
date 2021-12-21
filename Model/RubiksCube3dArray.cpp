@@ -3,9 +3,6 @@
 //
 
 #include "RubiksCube.h"
-#include <bits/stdc++.h>
-
-using namespace std;
 
 class RubiksCube3dArray : public RubiksCube {
 private:
@@ -83,7 +80,6 @@ public:
         this->u();
 
         return *this;
-
     }
 
     RubiksCube &u2() {
@@ -91,7 +87,6 @@ public:
         this->u();
 
         return *this;
-
     }
 
     RubiksCube &l() {
@@ -111,15 +106,15 @@ public:
         this->l();
         this->l();
         this->l();
-        return *this;
 
+        return *this;
     }
 
     RubiksCube &l2() {
         this->l();
         this->l();
-        return *this;
 
+        return *this;
     }
 
     RubiksCube &f() {
@@ -139,12 +134,14 @@ public:
         this->f();
         this->f();
         this->f();
+
         return *this;
     }
 
     RubiksCube &f2() {
         this->f();
         this->f();
+
         return *this;
     }
 
@@ -159,7 +156,6 @@ public:
         for (int i = 0; i < 3; i++) cube[4][i][0] = temp_arr[i];
 
         return *this;
-
     }
 
     RubiksCube &rPrime() {
@@ -168,7 +164,6 @@ public:
         this->r();
 
         return *this;
-
     }
 
     RubiksCube &r2() {
@@ -176,7 +171,6 @@ public:
         this->r();
 
         return *this;
-
     }
 
     RubiksCube &b() {
@@ -190,7 +184,6 @@ public:
         for (int i = 0; i < 3; i++) cube[1][i][0] = temp_arr[i];
 
         return *this;
-
     }
 
     RubiksCube &bPrime() {
@@ -199,7 +192,6 @@ public:
         this->b();
 
         return *this;
-
     }
 
     RubiksCube &b2() {
@@ -207,7 +199,6 @@ public:
         this->b();
 
         return *this;
-
     }
 
     RubiksCube &d() {
@@ -229,7 +220,6 @@ public:
         this->d();
 
         return *this;
-
     }
 
     RubiksCube &d2() {
@@ -238,5 +228,4 @@ public:
 
         return *this;
     }
-
 };

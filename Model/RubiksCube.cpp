@@ -161,7 +161,7 @@ void RubiksCube::print() const {
     cout << "Rubik Cube:\n\n";
 
     for (int row = 0; row <= 2; row++) {
-        for (unsigned i = 0; i < 8; i++) cout << " ";
+        for (unsigned i = 0; i < 7; i++) cout << " ";
         for (int col = 0; col <= 2; col++) {
             cout << getColorLetter(getColor(FACE::UP, row, col)) << " ";
         }
@@ -196,7 +196,7 @@ void RubiksCube::print() const {
     cout << "\n";
 
     for (int row = 0; row <= 2; row++) {
-        for (unsigned i = 0; i < 8; i++) cout << " ";
+        for (unsigned i = 0; i < 7; i++) cout << " ";
         for (int col = 0; col <= 2; col++) {
             cout << getColorLetter(getColor(FACE::DOWN, row, col)) << " ";
         }
