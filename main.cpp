@@ -1,14 +1,17 @@
 //
-// Created by user on 17-12-2021.
+// Created by Lakshya Mittal on 17-12-2021.
 //
 
 #include <bits/stdc++.h>
 #include "Model/RubiksCube3dArray.cpp"
+#include "Model/RubiksCube1dArray.cpp"
 
 using namespace std;
 
 int main() {
-    RubiksCube3dArray object;
+//    RubiksCube3dArray object;
+
+    RubiksCube1dArray object;
     object.print();
     cout << "\n\n";
 
