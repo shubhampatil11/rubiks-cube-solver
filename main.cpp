@@ -10,57 +10,121 @@
 using namespace std;
 
 int main() {
-//    RubiksCube3dArray object;
+    RubiksCube3dArray object3DArray;
+    RubiksCube1dArray object1dArray;
+    RubiksCubeBitboard objectBitboard;
 
-//    RubiksCube1dArray object;
+    object3DArray.print();
 
-
-    RubiksCubeBitboard object;
-    object.print();
-
-    if (object.isSolved()) cout << "SOLVED\n\n";
+    if (object3DArray.isSolved()) cout << "SOLVED\n\n";
     else cout << "NOT SOLVED\n\n";
 
-    object.u();
-    object.print();
-
-    object.l();
-    object.print();
-
-    object.f();
-    object.print();
-
-    object.r();
-    object.print();
-
-    object.b();
-    object.print();
-
-    object.d();
-    object.print();
-
-    if (object.isSolved()) cout << "SOLVED\n\n";
+    if (object1dArray.isSolved()) cout << "SOLVED\n\n";
     else cout << "NOT SOLVED\n\n";
 
-    object.dPrime();
-    object.print();
+    if (objectBitboard.isSolved()) cout << "SOLVED\n\n";
+    else cout << "NOT SOLVED\n\n";
 
-    object.bPrime();
-    object.print();
+    objectBitboard.u();
+    object3DArray.u();
+    object1dArray.u();
+    objectBitboard.print();
+    object3DArray.print();
+    object1dArray.print();
 
-    object.rPrime();
-    object.print();
+    objectBitboard.l();
+    object3DArray.l();
+    object1dArray.l();
+    objectBitboard.print();
+    object3DArray.print();
+    object1dArray.print();
 
-    object.fPrime();
-    object.print();
+    objectBitboard.f();
+    object3DArray.f();
+    object1dArray.f();
+    objectBitboard.print();
+    object3DArray.print();
+    object1dArray.print();
 
-    object.lPrime();
-    object.print();
+    objectBitboard.r();
+    object3DArray.r();
+    object1dArray.r();
+    objectBitboard.print();
+    object3DArray.print();
+    object1dArray.print();
 
-    object.uPrime();
-    object.print();
+    objectBitboard.b();
+    object3DArray.b();
+    object1dArray.b();
+    objectBitboard.print();
+    object3DArray.print();
+    object1dArray.print();
 
-    if (object.isSolved()) cout << "SOLVED\n\n";
+    objectBitboard.d();
+    object3DArray.d();
+    object1dArray.d();
+    objectBitboard.print();
+    object3DArray.print();
+    object1dArray.print();
+
+    if (object3DArray.isSolved()) cout << "SOLVED\n\n";
+    else cout << "NOT SOLVED\n\n";
+
+    if (object1dArray.isSolved()) cout << "SOLVED\n\n";
+    else cout << "NOT SOLVED\n\n";
+
+    if (objectBitboard.isSolved()) cout << "SOLVED\n\n";
+    else cout << "NOT SOLVED\n\n";
+
+    objectBitboard.dPrime();
+    object3DArray.dPrime();
+    object1dArray.dPrime();
+    objectBitboard.print();
+    object3DArray.print();
+    object1dArray.print();
+
+    objectBitboard.bPrime();
+    object3DArray.bPrime();
+    object1dArray.bPrime();
+    objectBitboard.print();
+    object3DArray.print();
+    object1dArray.print();
+
+    objectBitboard.rPrime();
+    object3DArray.rPrime();
+    object1dArray.rPrime();
+    objectBitboard.print();
+    object3DArray.print();
+    object1dArray.print();
+
+    objectBitboard.fPrime();
+    object3DArray.fPrime();
+    object1dArray.fPrime();
+    objectBitboard.print();
+    object3DArray.print();
+    object1dArray.print();
+
+    objectBitboard.lPrime();
+    object3DArray.lPrime();
+    object1dArray.lPrime();
+    objectBitboard.print();
+    object3DArray.print();
+    object1dArray.print();
+
+    objectBitboard.uPrime();
+    object3DArray.uPrime();
+    object1dArray.uPrime();
+    objectBitboard.print();
+    object3DArray.print();
+    object1dArray.print();
+
+    if (object3DArray.isSolved()) cout << "SOLVED\n\n";
+    else cout << "NOT SOLVED\n\n";
+
+    if (object1dArray.isSolved()) cout << "SOLVED\n\n";
+    else cout << "NOT SOLVED\n\n";
+
+    if (objectBitboard.isSolved()) cout << "SOLVED\n\n";
     else cout << "NOT SOLVED\n\n";
 
     return 0;
