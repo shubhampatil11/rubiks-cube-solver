@@ -4,9 +4,6 @@
 
 #include "RubiksCube.h"
 
-typedef RubiksCube::FACE FACE;
-typedef RubiksCube::COLOR COLOR;
-
 class RubiksCubeBitboard : public RubiksCube {
 
 private:
@@ -15,7 +12,7 @@ private:
                      {7, 8, 3},
                      {6, 5, 4}};
 
-    uint64_t one_8 = (1 << 8) - 1, one_16 = (1 << 16) - 1, one_24 = (1 << 24) - 1, one_48 = (1 << 48) - 1;
+    uint64_t one_8 = (1 << 8) - 1, one_24 = (1 << 24) - 1;
 
     void rotateFace(int ind) {
         uint64_t side = bitboard[ind];
@@ -47,9 +44,9 @@ public:
         }
     }
 
-    COLOR getColor(FACE face, unsigned row, unsigned col) const {
+    COLOR getColor(FACE face, unsigned row, unsigned col) const override {
         int idx = arr[row][col];
-        if (idx == 8) return (COLOR) ((int) face);
+        if (idx == 8) return (COLOR)((int) face);
 
         uint64_t side = bitboard[(int) face];
         uint64_t color = (side >> (8 * idx)) & one_8;
@@ -59,17 +56,17 @@ public:
             color = color >> 1;
             bit_pos++;
         }
-        return (COLOR) (bit_pos - 1);
+        return (COLOR)(bit_pos - 1);
     }
 
-    bool isSolved() const {
+    bool isSolved() const override {
         for (int i = 0; i < 6; i++) {
             if (all_colors[i] != bitboard[i]) return false;
         }
         return true;
     }
 
-    RubiksCube &u() {
+    RubiksCube &u() override {
         this->rotateFace(0);
         uint64_t temp = bitboard[2] & one_24;
         bitboard[2] = (bitboard[2] & ~one_24) | (bitboard[3] & one_24);
@@ -80,7 +77,7 @@ public:
         return *this;
     }
 
-    RubiksCube &uPrime() {
+    RubiksCube &uPrime() override {
         this->u();
         this->u();
         this->u();
@@ -88,14 +85,14 @@ public:
         return *this;
     };
 
-    RubiksCube &u2() {
+    RubiksCube &u2() override {
         this->u();
         this->u();
 
         return *this;
     };
 
-    RubiksCube &l() {
+    RubiksCube &l() override {
         this->rotateFace(1);
         uint64_t clr1 = (bitboard[2] & (one_8 << (8 * 0))) >> (8 * 0);
         uint64_t clr2 = (bitboard[2] & (one_8 << (8 * 6))) >> (8 * 6);
@@ -113,7 +110,7 @@ public:
 
     };
 
-    RubiksCube &lPrime() {
+    RubiksCube &lPrime() override {
         this->l();
         this->l();
         this->l();
@@ -121,14 +118,14 @@ public:
         return *this;
     };
 
-    RubiksCube &l2() {
+    RubiksCube &l2() override {
         this->l();
         this->l();
 
         return *this;
     };
 
-    RubiksCube &f() {
+    RubiksCube &f() override {
         this->rotateFace(2);
 
         uint64_t clr1 = (bitboard[0] & (one_8 << (8 * 4))) >> (8 * 4);
@@ -146,21 +143,21 @@ public:
         return *this;
     };
 
-    RubiksCube &fPrime() {
+    RubiksCube &fPrime() override {
         this->f();
         this->f();
         this->f();
         return *this;
     };
 
-    RubiksCube &f2() {
+    RubiksCube &f2() override {
         this->f();
         this->f();
 
         return *this;
     };
 
-    RubiksCube &r() {
+    RubiksCube &r() override {
         this->rotateFace(3);
         uint64_t clr1 = (bitboard[0] & (one_8 << (8 * 2))) >> (8 * 2);
         uint64_t clr2 = (bitboard[0] & (one_8 << (8 * 3))) >> (8 * 3);
@@ -177,7 +174,7 @@ public:
         return *this;
     };
 
-    RubiksCube &rPrime() {
+    RubiksCube &rPrime() override {
         this->r();
         this->r();
         this->r();
@@ -185,14 +182,14 @@ public:
         return *this;
     };
 
-    RubiksCube &r2() {
+    RubiksCube &r2() override {
         this->r();
         this->r();
 
         return *this;
     };
 
-    RubiksCube &b() {
+    RubiksCube &b() override {
         this->rotateFace(4);
 
         uint64_t clr1 = (bitboard[0] & (one_8 << (8 * 0))) >> (8 * 0);
@@ -210,7 +207,7 @@ public:
         return *this;
     };
 
-    RubiksCube &bPrime() {
+    RubiksCube &bPrime() override {
         this->b();
         this->b();
         this->b();
@@ -218,14 +215,14 @@ public:
         return *this;
     };
 
-    RubiksCube &b2() {
+    RubiksCube &b2() override {
         this->b();
         this->b();
 
         return *this;
     };
 
-    RubiksCube &d() {
+    RubiksCube &d() override {
         this->rotateFace(5);
 
         uint64_t clr1 = (bitboard[2] & (one_8 << (8 * 4))) >> (8 * 4);
@@ -243,7 +240,7 @@ public:
         return *this;
     };
 
-    RubiksCube &dPrime() {
+    RubiksCube &dPrime() override {
         this->d();
         this->d();
         this->d();
@@ -251,7 +248,7 @@ public:
         return *this;
     };
 
-    RubiksCube &d2() {
+    RubiksCube &d2() override {
         this->d();
         this->d();
 
