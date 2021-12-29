@@ -117,7 +117,7 @@ public:
     /*
      * Randomly shuffle the cube.
      */
-    RubiksCube &randomShuffleCube(unsigned int times);
+    vector<MOVE> randomShuffleCube(unsigned int times);
 
     // Rotational moves on Rubik Cube
 

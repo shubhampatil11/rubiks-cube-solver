@@ -205,10 +205,12 @@ void RubiksCube::print() const {
     cout << "\n";
 }
 
-RubiksCube &RubiksCube::randomShuffleCube(unsigned int times) {
+vector<RubiksCube::MOVE> RubiksCube::randomShuffleCube(unsigned int times) {
+    vector<MOVE> moves_performed;
     for (unsigned int i = 0; i < times; i++) {
         unsigned int selectMove = (rand() % 18);
+        moves_performed.push_back(static_cast<MOVE>(selectMove));
         this->move(static_cast<MOVE>(selectMove));
     }
-    return *this;
+    return moves_performed;
 }
