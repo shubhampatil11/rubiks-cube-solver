@@ -7,7 +7,7 @@
 #include "Model/RubiksCube1dArray.cpp"
 #include "Model/RubiksCubeBitboard.cpp"
 #include "Solver/DFSSolver.h"
-
+#include "Solver/BFSSolver.h"
 using namespace std;
 
 int main() {
@@ -172,21 +172,41 @@ int main() {
 //
 //    if (mp1[cube2]) cout << "Cube2 is present\n";
 //    else cout << "Cube2 is not present\n";
+//
 
-    RubiksCube3dArray cube;
+// DFS Solver Testing __________________________________________________________________________________________
+//    RubiksCube3dArray cube;
+//    cube.print();
+//
+//    vector<RubiksCube::MOVE> shuffle_moves = cube.randomShuffleCube(6);
+//    for (auto move: shuffle_moves) cout << cube.getMove(move) << " ";
+//    cout << "\n";
+//    cube.print();
+//
+//    DFSSolver<RubiksCube3dArray, Hash3d> dfsSolver(cube, 8);
+//    vector<RubiksCube::MOVE> solve_moves = dfsSolver.solve();
+//
+//    for (auto move: solve_moves) cout << cube.getMove(move) << " ";
+//    cout << "\n";
+//    dfsSolver.rubiksCube.print();
+
+
+//BFS Solver -----------------------------------------------------------------------------------------------------
+    RubiksCubeBitboard cube;
     cube.print();
 
-    vector<RubiksCube::MOVE> shuffle_moves = cube.randomShuffleCube(5);
-    for (auto move: shuffle_moves) cout << cube.getMove(move) << " ";
+    vector<RubiksCube::MOVE> shuffle_moves = cube.randomShuffleCube(4);
+    for(auto move: shuffle_moves) cout << cube.getMove(move) << " ";
     cout << "\n";
     cube.print();
 
-    DFSSolver<RubiksCube3dArray, Hash3d> dfsSolver(cube, 6);
-    vector<RubiksCube::MOVE> solve_moves = dfsSolver.solve();
+    BFSSolver<RubiksCubeBitboard, HashBitboard> bfsSolver(cube);
+    vector<RubiksCube::MOVE> solve_moves = bfsSolver.solve();
 
-    for (auto move: solve_moves) cout << cube.getMove(move) << " ";
+    for(auto move: solve_moves) cout << cube.getMove(move) << " ";
     cout << "\n";
-    dfsSolver.rubiksCube.print();
+    bfsSolver.rubiksCube.print();
+
 
     return 0;
 }
