@@ -9,6 +9,7 @@
 #include "Solver/DFSSolver.h"
 #include "Solver/BFSSolver.h"
 #include "Solver/IDDFSSolver.h"
+#include "Solver/IDAstarSolver.h"
 
 using namespace std;
 
@@ -197,7 +198,7 @@ int main() {
 //    RubiksCubeBitboard cube;
 //    cube.print();
 //
-//    vector<RubiksCube::MOVE> shuffle_moves = cube.randomShuffleCube(4);
+//    vector<RubiksCube::MOVE> shuffle_moves = cube.randomShuffleCube(6);
 //    for(auto move: shuffle_moves) cout << cube.getMove(move) << " ";
 //    cout << "\n";
 //    cube.print();
@@ -210,20 +211,35 @@ int main() {
 //    bfsSolver.rubiksCube.print();
 
 // IDDFS Solver ----------------------------------------------------------------------------------------------------
+//    RubiksCubeBitboard cube;
+//    cube.print();
+//
+//    vector<RubiksCube::MOVE> shuffle_moves = cube.randomShuffleCube(7);
+//    for (auto move: shuffle_moves) cout << cube.getMove(move) << " ";
+//    cout << "\n";
+//    cube.print();
+//
+//    IDDFSSolver<RubiksCubeBitboard, HashBitboard> iddfsSolver(cube, 7);
+//    vector<RubiksCube::MOVE> solve_moves = iddfsSolver.solve();
+//
+//    for (auto move: solve_moves) cout << cube.getMove(move) << " ";
+//    cout << "\n";
+//    iddfsSolver.rubiksCube.print();
+
+// IDA* SOLVER ---------------------------------------------------------------------------------------------------
     RubiksCubeBitboard cube;
     cube.print();
 
-    vector<RubiksCube::MOVE> shuffle_moves = cube.randomShuffleCube(7);
+    vector<RubiksCube::MOVE> shuffle_moves = cube.randomShuffleCube(5);
     for (auto move: shuffle_moves) cout << cube.getMove(move) << " ";
     cout << "\n";
     cube.print();
 
-    IDDFSSolver<RubiksCubeBitboard, HashBitboard> iddfsSolver(cube, 6);
-    vector<RubiksCube::MOVE> solve_moves = iddfsSolver.solve();
-
+    IDAstarSolver<RubiksCubeBitboard, HashBitboard> idAstarSolver(cube);
+    vector<RubiksCube::MOVE> solve_moves = idAstarSolver.solve();
     for (auto move: solve_moves) cout << cube.getMove(move) << " ";
     cout << "\n";
-    iddfsSolver.rubiksCube.print();
+    idAstarSolver.rubiksCube.print();
 
     return 0;
 }

@@ -207,6 +207,7 @@ void RubiksCube::print() const {
 
 vector<RubiksCube::MOVE> RubiksCube::randomShuffleCube(unsigned int times) {
     vector<MOVE> moves_performed;
+    srand(time(0));
     for (unsigned int i = 0; i < times; i++) {
         unsigned int selectMove = (rand() % 18);
         moves_performed.push_back(static_cast<MOVE>(selectMove));

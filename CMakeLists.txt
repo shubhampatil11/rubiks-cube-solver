@@ -8,4 +8,4 @@ include_directories(Model)
 add_executable(rubiks_cube_solver
         Model/RubiksCube.cpp
         Model/RubiksCube.h
-        main.cpp Model/RubiksCube3dArray.cpp Model/RubiksCube1dArray.cpp Model/RubiksCubeBitboard.cpp Solver/DFSSolver.h Solver/BFSSolver.h Solver/IDDFSSolver.h)
+        main.cpp Model/RubiksCube3dArray.cpp Model/RubiksCube1dArray.cpp Model/RubiksCubeBitboard.cpp Solver/DFSSolver.h Solver/BFSSolver.h Solver/IDDFSSolver.h Model/PatternDatabase/PatternDatabase.h Solver/IDAstarSolver.h)
