@@ -3,13 +3,15 @@
 //
 
 #include <bits/stdc++.h>
-#include "Model/RubiksCube3dArray.cpp"
-#include "Model/RubiksCube1dArray.cpp"
-#include "Model/RubiksCubeBitboard.cpp"
+//#include "Model/RubiksCube3dArray.cpp"
+//#include "Model/RubiksCube1dArray.cpp"
+//#include "Model/RubiksCubeBitboard.cpp"
 #include "Solver/DFSSolver.h"
 #include "Solver/BFSSolver.h"
 #include "Solver/IDDFSSolver.h"
 #include "Solver/IDAstarSolver.h"
+//#include "PatternDatabases/CornerPatternDatabase.h"
+#include "PatternDatabases/CornerDBMaker.h"
 
 using namespace std;
 
@@ -227,19 +229,61 @@ int main() {
 //    iddfsSolver.rubiksCube.print();
 
 // IDA* SOLVER ---------------------------------------------------------------------------------------------------
+//    RubiksCubeBitboard cube;
+//    cube.print();
+//
+//    vector<RubiksCube::MOVE> shuffle_moves = cube.randomShuffleCube(5);
+//    for (auto move: shuffle_moves) cout << cube.getMove(move) << " ";
+//    cout << "\n";
+//    cube.print();
+//
+//    IDAstarSolver<RubiksCubeBitboard, HashBitboard> idAstarSolver(cube);
+//    vector<RubiksCube::MOVE> solve_moves = idAstarSolver.solve();
+//    for (auto move: solve_moves) cout << cube.getMove(move) << " ";
+//    cout << "\n";
+//    idAstarSolver.rubiksCube.print();
+
+// CornerPatternDatabase Testing ---------------------------------------------------------------------------------
+
+//    CornerPatternDatabase cornerDB;
+//    RubiksCubeBitboard cube;
+//    cube.print();
+//
+//    cout << (int)cornerDB.getNumMoves(cube) << "\n";
+//
+//    cornerDB.setNumMoves(cube, 5);
+//
+//    cout << (int)cornerDB.getNumMoves(cube) << "\n";
+//
+//    cube.randomShuffleCube(1);
+//    cube.print();
+//    cout << (int)cornerDB.getNumMoves(cube) << "\n";
+//
+//    cornerDB.setNumMoves(cube, 6);
+//
+//    cout << (int)cornerDB.getNumMoves(cube) << "\n";
+
+
+// CornerDBMaker Testing --------------------------------------------------------------------------
+    string fileName = "C:\\Users\\user\\CLionProjects\\rubiks-cube-solver\\Databases\\cornerDepth5V1.txt";
+
+//    Code to create Corner Database
+//    CornerDBMaker dbMaker(fileName, 0x77);
+//    dbMaker.bfsAndStore();
+
     RubiksCubeBitboard cube;
+    auto shuffleMoves = cube.randomShuffleCube(14);
     cube.print();
-
-    vector<RubiksCube::MOVE> shuffle_moves = cube.randomShuffleCube(5);
-    for (auto move: shuffle_moves) cout << cube.getMove(move) << " ";
+    for(auto move: shuffleMoves) cout << cube.getMove(move) << " ";
     cout << "\n";
-    cube.print();
 
-    IDAstarSolver<RubiksCubeBitboard, HashBitboard> idAstarSolver(cube);
-    vector<RubiksCube::MOVE> solve_moves = idAstarSolver.solve();
-    for (auto move: solve_moves) cout << cube.getMove(move) << " ";
+    IDAstarSolver<RubiksCubeBitboard, HashBitboard> idaStarSolver(cube, fileName);
+    auto moves = idaStarSolver.solve();
+
+    idaStarSolver.rubiksCube.print();
+    for(auto move: moves) cout << cube.getMove(move) << " ";
     cout << "\n";
-    idAstarSolver.rubiksCube.print();
+
 
     return 0;
 }

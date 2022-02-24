@@ -6,7 +6,7 @@
 #define RUBIKS_CUBE_SOLVER_PATTERNDATABASE_H
 
 template<typename T>
-class PatternDatabase {
+class PatternDatabaseEstimate {
 private:
 
 public:

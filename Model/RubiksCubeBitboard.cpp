@@ -30,6 +30,49 @@ private:
         bitboard[s1] = (bitboard[s1] & ~(one_8 << (8 * s1_3))) | (clr3 << (8 * s1_3));
     }
 
+//    Helper to getCorners()
+    int get5bitCorner(string corner){
+        int ret = 0;
+        string actual_str = "";
+        for(auto c: corner){
+            if(c != 'W' && c != 'Y') continue;
+            actual_str.push_back(c);
+            if(c == 'Y'){
+                ret |= (1 << 2);
+            }
+        }
+
+        for(auto c: corner){
+            if(c != 'R' && c != 'O') continue;
+            if(c == 'O'){
+                ret |= (1 << 1);
+            }
+        }
+
+        for(auto c: corner){
+            if(c != 'B' && c != 'G') continue;
+            if(c == 'G'){
+                ret |= (1 << 0);
+            }
+        }
+
+        if(corner[1] == actual_str[0]){
+            ret |= (1 << 3);
+        }else if(corner[2] == actual_str[0]){
+            ret |= (1 << 4);
+        }
+        return ret;
+    }
+
+//    This function was used for testing / printing
+
+//    void print5bitbin(int a){
+//        for(int i=4; i>=0; i--){
+//            if(a & (1 << i)) cout << 1;
+//            else cout << 0;
+//        }
+//    }
+
 public:
     uint64_t bitboard[6];
 
@@ -267,6 +310,86 @@ public:
             bitboard[i] = r1.bitboard[i];
         }
         return *this;
+    }
+
+
+    uint64_t getCorners(){
+        uint64_t  ret = 0;
+        string top_front_right = "";
+        top_front_right += getColorLetter(getColor(FACE::UP, 2, 2));
+        top_front_right += getColorLetter(getColor(FACE::FRONT, 0, 2));
+        top_front_right += getColorLetter(getColor(FACE::RIGHT, 0, 0));
+
+        string top_front_left = "";
+        top_front_left += getColorLetter(getColor(FACE::UP, 2, 0));
+        top_front_left += getColorLetter(getColor(FACE::FRONT, 0, 0));
+        top_front_left += getColorLetter(getColor(FACE::LEFT, 0, 2));
+
+        string top_back_left = "";
+        top_back_left += getColorLetter(getColor(FACE::UP, 0, 0));
+        top_back_left += getColorLetter(getColor(FACE::BACK, 0, 2));
+        top_back_left += getColorLetter(getColor(FACE::LEFT, 0, 0));
+
+        string top_back_right = "";
+        top_back_right += getColorLetter(getColor(FACE::UP, 0, 2));
+        top_back_right += getColorLetter(getColor(FACE::BACK, 0, 0));
+        top_back_right += getColorLetter(getColor(FACE::RIGHT, 0, 2));
+
+        string bottom_front_right = "";
+        bottom_front_right += getColorLetter(getColor(FACE::DOWN, 0, 2));
+        bottom_front_right += getColorLetter(getColor(FACE::FRONT, 2, 2));
+        bottom_front_right += getColorLetter(getColor(FACE::RIGHT, 2, 0));
+
+        string bottom_front_left = "";
+        bottom_front_left += getColorLetter(getColor(FACE::DOWN, 0, 0));
+        bottom_front_left += getColorLetter(getColor(FACE::FRONT, 2, 0));
+        bottom_front_left += getColorLetter(getColor(FACE::LEFT, 2, 2));
+
+        string bottom_back_right = "";
+        bottom_back_right += getColorLetter(getColor(FACE::DOWN, 2, 2));
+        bottom_back_right += getColorLetter(getColor(FACE::BACK, 2, 0));
+        bottom_back_right += getColorLetter(getColor(FACE::RIGHT, 2, 2));
+
+        string bottom_back_left = "";
+        bottom_back_left += getColorLetter(getColor(FACE::DOWN, 2, 0));
+        bottom_back_left += getColorLetter(getColor(FACE::BACK, 2, 2));
+        bottom_back_left += getColorLetter(getColor(FACE::LEFT, 2, 0));
+
+        ret |= get5bitCorner(top_front_right);
+        ret = ret << 5;
+
+        ret |= get5bitCorner(top_front_left);
+        ret = ret << 5;
+
+        ret |= get5bitCorner(top_back_right);
+        ret = ret << 5;
+
+        ret |= get5bitCorner(top_back_left);
+        ret = ret << 5;
+
+        ret |= get5bitCorner(bottom_front_right);
+        ret = ret << 5;
+
+        ret |= get5bitCorner(bottom_front_left);
+        ret = ret << 5;
+
+        ret |= get5bitCorner(bottom_back_right);
+        ret = ret << 5;
+
+        ret |= get5bitCorner(bottom_back_left);
+        ret = ret << 5;
+
+//        Following was used for Testing / Printing
+
+//        cout << top_front_right << " "; print5bitbin(get5bitCorner(top_front_right )); cout  << "\n";
+//        cout << top_front_left << " "; print5bitbin(get5bitCorner(top_front_left )); cout << "\n";
+//        cout << top_back_right << " "; print5bitbin(get5bitCorner(top_back_right )); cout << "\n";
+//        cout << top_back_left  << " "; print5bitbin(get5bitCorner(top_back_left  )); cout << "\n";
+//        cout << bottom_front_right  << " "; print5bitbin(get5bitCorner(bottom_front_right  )); cout << "\n";
+//        cout << bottom_front_left << " "; print5bitbin(get5bitCorner(bottom_front_left )); cout << "\n";
+//        cout << bottom_back_right << " "; print5bitbin(get5bitCorner(bottom_back_right )); cout << "\n";
+//        cout << bottom_back_left << " "; print5bitbin(get5bitCorner(bottom_back_left )); cout << "\n";
+        return ret;
     }
 
 };

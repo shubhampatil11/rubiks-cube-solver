@@ -58,7 +58,7 @@ public:
      * Returns the first letter of the given COLOR
      * Eg: For COLOR::GREEN, it returns 'G'
      */
-    static char getColorLetter(COLOR color) ;
+    static char getColorLetter(COLOR color);
 
     /*
      * Returns true if the Rubik Cube is solved, otherwise returns false.
@@ -68,7 +68,7 @@ public:
     /*
      * Returns the move in the string format.
      */
-    static string getMove(MOVE ind) ;
+    static string getMove(MOVE ind);
 
     /*
      * Print the Rubik Cube in Planar format.
@@ -160,6 +160,12 @@ public:
     virtual RubiksCube &dPrime() = 0;
 
     virtual RubiksCube &d2() = 0;
+
+    string getCornerColorString(uint8_t ind) const;
+
+    uint8_t getCornerIndex(uint8_t ind) const;
+
+    uint8_t getCornerOrientation(uint8_t ind) const;
 };
 
 
