@@ -7,7 +7,8 @@
 class RubiksCubeBitboard : public RubiksCube {
 
 private:
-    uint64_t all_colors[6];
+    uint64_t solved_side_config[6]{};
+
     int arr[3][3] = {{0, 1, 2},
                      {7, 8, 3},
                      {6, 5, 4}};
@@ -31,34 +32,34 @@ private:
     }
 
 //    Helper to getCorners()
-    int get5bitCorner(string corner){
+    int get5bitCorner(string corner) {
         int ret = 0;
-        string actual_str = "";
-        for(auto c: corner){
-            if(c != 'W' && c != 'Y') continue;
+        string actual_str;
+        for (auto c: corner) {
+            if (c != 'W' && c != 'Y') continue;
             actual_str.push_back(c);
-            if(c == 'Y'){
+            if (c == 'Y') {
                 ret |= (1 << 2);
             }
         }
 
-        for(auto c: corner){
-            if(c != 'R' && c != 'O') continue;
-            if(c == 'O'){
+        for (auto c: corner) {
+            if (c != 'R' && c != 'O') continue;
+            if (c == 'O') {
                 ret |= (1 << 1);
             }
         }
 
-        for(auto c: corner){
-            if(c != 'B' && c != 'G') continue;
-            if(c == 'G'){
+        for (auto c: corner) {
+            if (c != 'B' && c != 'G') continue;
+            if (c == 'G') {
                 ret |= (1 << 0);
             }
         }
 
-        if(corner[1] == actual_str[0]){
+        if (corner[1] == actual_str[0]) {
             ret |= (1 << 3);
-        }else if(corner[2] == actual_str[0]){
+        } else if (corner[2] == actual_str[0]) {
             ret |= (1 << 4);
         }
         return ret;
@@ -74,16 +75,16 @@ private:
 //    }
 
 public:
-    uint64_t bitboard[6];
+    uint64_t bitboard[6]{};
 
     RubiksCubeBitboard() {
         for (int side = 0; side < 6; side++) {
             uint64_t clr = 1 << side;
             bitboard[side] = 0;
-            for (int idx = 0; idx < 8; idx++) {
-                bitboard[side] |= clr << (8 * idx);
+            for (int faceIdx = 0; faceIdx < 8; faceIdx++) {
+                bitboard[side] |= clr << (8 * faceIdx);
             }
-            all_colors[side] = bitboard[side];
+            solved_side_config[side] = bitboard[side];
         }
     }
 
@@ -104,7 +105,7 @@ public:
 
     bool isSolved() const override {
         for (int i = 0; i < 6; i++) {
-            if (all_colors[i] != bitboard[i]) return false;
+            if (solved_side_config[i] != bitboard[i]) return false;
         }
         return true;
     }
@@ -313,8 +314,8 @@ public:
     }
 
 
-    uint64_t getCorners(){
-        uint64_t  ret = 0;
+    uint64_t getCorners() {
+        uint64_t ret = 0;
         string top_front_right = "";
         top_front_right += getColorLetter(getColor(FACE::UP, 2, 2));
         top_front_right += getColorLetter(getColor(FACE::FRONT, 0, 2));
@@ -389,6 +390,7 @@ public:
 //        cout << bottom_front_left << " "; print5bitbin(get5bitCorner(bottom_front_left )); cout << "\n";
 //        cout << bottom_back_right << " "; print5bitbin(get5bitCorner(bottom_back_right )); cout << "\n";
 //        cout << bottom_back_left << " "; print5bitbin(get5bitCorner(bottom_back_left )); cout << "\n";
+
         return ret;
     }
 

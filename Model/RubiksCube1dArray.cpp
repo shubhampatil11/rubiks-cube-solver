@@ -28,7 +28,7 @@ private:
     }
 
 public:
-    char cube[54];
+    char cube[54]{};
 
     RubiksCube1dArray() {
         for (int i = 0; i < 6; i++) {
