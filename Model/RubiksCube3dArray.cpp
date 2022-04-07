@@ -21,7 +21,7 @@ private:
     }
 
 public:
-    char cube[6][3][3];
+    char cube[6][3][3]{};
 
     RubiksCube3dArray() {
         for (int i = 0; i < 6; i++) {
